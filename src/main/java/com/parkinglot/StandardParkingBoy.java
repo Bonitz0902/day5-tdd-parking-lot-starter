@@ -21,17 +21,15 @@ public class StandardParkingBoy {
         return null;
     }
 
-    public ParkingTicket parkingTicket(Car car) {
-        int parkingLotNumber = 1;
+    public ParkingTicket parkCar(Car car) {
+
         for (ParkingLot parkingLot1 : parkingLotList) {
             if(parkingLot1.getParkingLotSize() == 0){
                 throw new NoAvailablePositionException();
             }
-            if (parkingLot1.getParkingTicketCarMap() != parkingLot1.getParkingLotSize()) {
-                return parkingLot1.parkCar(car, parkingLotNumber);
+            if (parkingLot1.getParkingTicketCarMapSize() != parkingLot1.getParkingLotSize()) {
+                return parkingLot1.parkCar(car);
             }
-
-            parkingLotNumber++;
 
         }
 

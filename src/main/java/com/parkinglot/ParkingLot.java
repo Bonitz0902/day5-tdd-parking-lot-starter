@@ -10,8 +10,9 @@ public class ParkingLot {
     private Map<ParkingTicket, Car> parkingTicketCarMap = new HashMap<>();
     private int nextTicketNumber = 1;
     private int maxSlot;
+    private int parkingLotNumber;
 
-    public ParkingTicket parkCar(Car car, int parkingLotNumber) {
+    public ParkingTicket parkCar(Car car) {
 
         if (parkingTicketCarMap.size() >= maxSlot) {
             throw new NoAvailablePositionException();
@@ -32,7 +33,12 @@ public class ParkingLot {
         return parkingTicketCarMap.remove(ticket);
     }
 
-    public int getParkingTicketCarMap(){
+    public Map<ParkingTicket, Car> getParkingTicketCarMap(){
+        return parkingTicketCarMap;
+    }
+
+    public int getParkingTicketCarMapSize(){
+
         return parkingTicketCarMap.size();
     }
 
@@ -40,7 +46,8 @@ public class ParkingLot {
         return this.maxSlot;
     }
 
-    public ParkingLot(int maxSlot) {
+    public ParkingLot(int maxSlot, int parkingLotNumber) {
         this.maxSlot = maxSlot;
+        this.parkingLotNumber = parkingLotNumber;
     }
 }
