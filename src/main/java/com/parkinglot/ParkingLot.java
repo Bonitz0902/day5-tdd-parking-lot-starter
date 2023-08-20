@@ -11,6 +11,7 @@ public class ParkingLot {
     private int nextTicketNumber = 1;
     private int maxSlot;
     private int parkingLotNumber;
+    private int availableParkingSlot;
 
     public ParkingTicket parkCar(Car car) {
 
@@ -21,6 +22,7 @@ public class ParkingLot {
         ParkingTicket parkingTicket = new ParkingTicket(nextTicketNumber, parkingLotNumber);
         parkingTicketCarMap.put(parkingTicket, car);
         nextTicketNumber++;
+        availableParkingSlot--;
         return parkingTicket;
     }
 
@@ -49,5 +51,16 @@ public class ParkingLot {
     public ParkingLot(int maxSlot, int parkingLotNumber) {
         this.maxSlot = maxSlot;
         this.parkingLotNumber = parkingLotNumber;
+        this.availableParkingSlot = maxSlot;
+    }
+
+    public double getAvailableSlotRate() {
+        return (double) availableParkingSlot/maxSlot;
+    }
+
+    public Car setParkingTicketCarMap(Map<ParkingTicket, Car> ticketCarMap, ParkingTicket parkingTicket){
+        Car car = ticketCarMap.remove(parkingTicket);
+        this.parkingTicketCarMap = ticketCarMap;
+        return car;
     }
 }

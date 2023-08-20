@@ -7,7 +7,6 @@ import java.util.*;
 public class SmartParkingBoy {
 
     List<ParkingLot> parkingLotsList;
-    //static ParkingLot parkingLotWithLowestParkedCars;
 
     static Map<Car, ParkingLot> carParkingLotMap = new HashMap<>();
     public List<Map<ParkingTicket, Car>> parkingTicketCarMap = new ArrayList<>();
