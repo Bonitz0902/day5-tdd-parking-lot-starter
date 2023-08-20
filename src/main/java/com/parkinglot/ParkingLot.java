@@ -1,5 +1,7 @@
 package com.parkinglot;
 
+import com.parkinglot.exepction.UnrecognizedTicketException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +13,7 @@ public class ParkingLot {
     public ParkingTicket parkCar(Car car) {
 
         if (parkingTicketCarMap.size() >= maxSlot) {
-            return null;
+            throw new UnrecognizedTicketException();
         }
 
         ParkingTicket parkingTicket = new ParkingTicket(nextTicketNumber);
@@ -21,8 +23,10 @@ public class ParkingLot {
     }
 
     public Car retrieveCar(ParkingTicket ticket) {
-        if(ticket == null){
-            return null;
+        Car car = parkingTicketCarMap.get(ticket);
+
+        if(car == null){
+            throw new UnrecognizedTicketException();
         }
         return parkingTicketCarMap.remove(ticket);
     }

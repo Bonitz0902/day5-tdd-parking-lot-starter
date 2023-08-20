@@ -1,11 +1,13 @@
 package com.parkinglot;
 
+import com.parkinglot.exepction.UnrecognizedTicketException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingSlotTest {
     ParkingLot parkingLot = new ParkingLot(10);
+    String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket.";
     @Test
     public void should_return_parking_ticket_when_execute_parkCar_given_parking_lot_and_car(){
         Car car = new Car("123ABC");
@@ -46,9 +48,12 @@ public class ParkingSlotTest {
     public void should_return_null_car_when_retrieve_car_given_parking_lot_and_a_wrong_ticket(){
         ParkingTicket wrongTicket = new ParkingTicket(null);
 
-        Car retrievedCar = parkingLot.retrieveCar(wrongTicket);
 
-        assertNull(retrievedCar);
+        UnrecognizedTicketException unrecognizedTicketException = assertThrows(UnrecognizedTicketException.class, () ->
+                parkingLot.retrieveCar(wrongTicket));
+
+
+        assertEquals(UNRECOGNIZED_PARKING_TICKET, unrecognizedTicketException.getMessage());
     }
 
     @Test
@@ -56,21 +61,23 @@ public class ParkingSlotTest {
         Car car1 = new Car("AAAAA");
 
         ParkingTicket parkingTicket1 = parkingLot.parkCar(car1);
-        ParkingTicket parkingTicket2 = parkingLot.parkCar(car1);
 
         Car retrivedCar = parkingLot.retrieveCar(parkingTicket1);
-        Car nothingRetrivedCar = parkingLot.retrieveCar(parkingTicket1);
+        UnrecognizedTicketException unrecognizedTicketException = assertThrows(UnrecognizedTicketException.class, () ->
+                parkingLot.retrieveCar(parkingTicket1));
 
-        assertNull(nothingRetrivedCar);
+        assertEquals(UNRECOGNIZED_PARKING_TICKET, unrecognizedTicketException.getMessage());
     }
 
     @Test
     public void should_return_nothing_when_retrived_car_given_null_parking_lot_and_parking_ticket(){
         ParkingLot nullParkingLot = new ParkingLot(0);
         Car car1 = new Car("AAAAA");
-        ParkingTicket parkingTicket = nullParkingLot.parkCar(car1);
 
-        assertNull(parkingTicket);
+        UnrecognizedTicketException unrecognizedTicketException = assertThrows(UnrecognizedTicketException.class, () ->
+                nullParkingLot.parkCar(car1));
+
+        assertEquals(UNRECOGNIZED_PARKING_TICKET, unrecognizedTicketException.getMessage());
 
     }
 
