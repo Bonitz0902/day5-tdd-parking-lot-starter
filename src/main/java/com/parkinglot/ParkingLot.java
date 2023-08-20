@@ -11,13 +11,13 @@ public class ParkingLot {
     private int nextTicketNumber = 1;
     private int maxSlot;
 
-    public ParkingTicket parkCar(Car car) {
+    public ParkingTicket parkCar(Car car, int parkingLotNumber) {
 
         if (parkingTicketCarMap.size() >= maxSlot) {
             throw new NoAvailablePositionException();
         }
 
-        ParkingTicket parkingTicket = new ParkingTicket(nextTicketNumber);
+        ParkingTicket parkingTicket = new ParkingTicket(nextTicketNumber, parkingLotNumber);
         parkingTicketCarMap.put(parkingTicket, car);
         nextTicketNumber++;
         return parkingTicket;
@@ -30,6 +30,14 @@ public class ParkingLot {
             throw new UnrecognizedTicketException();
         }
         return parkingTicketCarMap.remove(ticket);
+    }
+
+    public int getParkingTicketCarMap(){
+        return parkingTicketCarMap.size();
+    }
+
+    public int getParkingLotSize(){
+        return this.maxSlot;
     }
 
     public ParkingLot(int maxSlot) {
