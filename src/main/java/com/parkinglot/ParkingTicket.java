@@ -9,10 +9,6 @@ public class ParkingTicket {
         this.parkingLotNumber = parkingLotNumber;
     }
 
-    public int getTicketNumber() {
-        return ticketNumber;
-    }
-
     public int getParkingLotNumber() {
         return parkingLotNumber;
     }

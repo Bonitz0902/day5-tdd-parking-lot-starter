@@ -5,8 +5,6 @@ import com.parkinglot.exepction.UnrecognizedTicketException;
 import java.util.*;
 
 public class SuperParkingBoy {
-    private int maxSlot;
-    private int availableSot;
     List<ParkingLot> parkingLotList;
 
     public SuperParkingBoy(List<ParkingLot> parkingLotList) {

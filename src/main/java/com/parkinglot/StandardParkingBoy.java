@@ -5,12 +5,8 @@ import com.parkinglot.exepction.NoAvailablePositionException;
 import java.util.List;
 
 public class StandardParkingBoy {
-    ParkingLot parkingLot;
     List<ParkingLot> parkingLotList;
 
-    public StandardParkingBoy(ParkingLot parkingLot){
-        this.parkingLot = parkingLot;
-    }
     public StandardParkingBoy(List<ParkingLot> parkingLotList){
         this.parkingLotList = parkingLotList;
     }

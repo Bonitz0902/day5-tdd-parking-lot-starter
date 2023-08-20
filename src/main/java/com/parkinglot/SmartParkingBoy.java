@@ -8,9 +8,6 @@ public class SmartParkingBoy {
 
     static List<ParkingLot> parkingLotsList;
 
-    static Map<Car, ParkingLot> carParkingLotMap = new HashMap<>();
-    public List<Map<ParkingTicket, Car>> parkingTicketCarMap = new ArrayList<>();
-
     public SmartParkingBoy(List<ParkingLot> parkingLotList) {
 
         this.parkingLotsList = parkingLotList;
