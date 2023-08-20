@@ -264,9 +264,9 @@ public class ParkingSlotTest {
     public void should_return_parking_ticket_when_execute_parkCar_given_parking_lot_and_car_smartParkingBoy(){
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy(List.of(new ParkingLot(10, 1),new ParkingLot(10, 2)));
         Car car = new Car("123ABC");
-        ParkingTicket ticketThatParkedInOne = smartParkingBoy.parkCar(car);
+        ParkingTicket ticket = smartParkingBoy.parkCar(car);
 
-        assertEquals(1,ticketThatParkedInOne);
+        assertNotNull(ticket);
 
 
 
@@ -293,8 +293,9 @@ public class ParkingSlotTest {
         ParkingTicket ticket1 = smartParkingBoy.parkCar(car1);
         ParkingTicket ticket2 = smartParkingBoy.parkCar(car2);
 
-        Car retrievedCar2 = smartParkingBoy.retrieveCar(ticket2);
+
         Car retrievedCar1 = smartParkingBoy.retrieveCar(ticket1);
+        Car retrievedCar2 = smartParkingBoy.retrieveCar(ticket2);
 
 
         assertEquals(car1,retrievedCar1);

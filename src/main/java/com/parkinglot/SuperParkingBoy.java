@@ -25,13 +25,9 @@ public class SuperParkingBoy {
                 .orElse(null);
     }
 
-    private double getAvailableSlotRate(){
-        return (double) availableSot/maxSlot;
-    }
-
-
     public Car retrieveCar(ParkingTicket ticket) {
         Map<ParkingTicket, Car> parkingTicketCarMap = new HashMap<>();
+
         return parkingLotList.stream()
                 .map(parkingLot ->{
                     parkingTicketCarMap.putAll(parkingLot.getParkingTicketCarMap());
