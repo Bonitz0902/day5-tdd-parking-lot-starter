@@ -342,4 +342,86 @@ public class ParkingSlotTest {
 
     }
 
+    //Story 6
+
+    @Test
+    public void should_return_parking_ticket_when_execute_parkCar_given_parking_lot_and_car_superParkingBoy(){
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy(List.of(new ParkingLot(10,1)));
+        Car car = new Car("123ABC");
+        ParkingTicket ticket = superParkingBoy.parkCar(car);
+
+        assertNotNull(ticket);
+    }
+
+    @Test
+    public void should_return_parked_car_when_execute_retrieve_car_given_parking_lot_with_parked_car_and_ticket_superParkingBoy(){
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy(List.of(new ParkingLot(3,1),new ParkingLot(10,2),new ParkingLot(10,3)));
+
+        Car car = new Car("123ABC");
+        ParkingTicket ticket1 = superParkingBoy.parkCar(car);
+
+        Car retreivedCar = superParkingBoy.retrieveCar(ticket1);
+
+        assertEquals(car, retreivedCar);
+    }
+
+    @Test
+    public void should_return_right_car_each_ticket_when_execute_retrieve_car_given_2_parked_cars_and_2_parking_tickets_superParkingBoy(){
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy(List.of(new ParkingLot(3,1),new ParkingLot(10,2),new ParkingLot(10,3)));
+        Car car1 = new Car("123123");
+        Car car2 = new Car("ABCABC");
+
+        ParkingTicket ticket1 = superParkingBoy.parkCar(car1);
+        ParkingTicket ticket2 = superParkingBoy.parkCar(car2);
+
+
+        Car retrievedCar1 = superParkingBoy.retrieveCar(ticket1);
+        Car retrievedCar2 = superParkingBoy.retrieveCar(ticket2);
+
+
+        assertEquals(car1,retrievedCar1);
+        assertEquals(car2,retrievedCar2);
+
+    }
+
+    @Test
+    public void should_return_null_car_when_retrieve_car_given_parking_lot_and_a_wrong_ticket_superParkingBoy(){
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy(List.of(new ParkingLot(3,1),new ParkingLot(10,2),new ParkingLot(10,3)));
+
+        ParkingTicket wrongTicket = new ParkingTicket(null, 1);
+
+
+        UnrecognizedTicketException unrecognizedTicketException = assertThrows(UnrecognizedTicketException.class, () ->
+                superParkingBoy.retrieveCar(wrongTicket));
+
+
+        assertEquals(UNRECOGNIZED_PARKING_TICKET, unrecognizedTicketException.getMessage());
+    }
+
+    @Test
+    public void should_return_null_car_when_execute_retrieveCar_given_parking_lot_and_used_parking_ticket_superParkingBoy(){
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy(List.of(new ParkingLot(3,1),new ParkingLot(10,2),new ParkingLot(10,3)));
+
+        Car car1 = new Car("AAAAA");
+
+        ParkingTicket parkingTicket1 = superParkingBoy.parkCar(car1);
+        Car car = superParkingBoy.retrieveCar(parkingTicket1);
+        UnrecognizedTicketException unrecognizedTicketException = assertThrows(UnrecognizedTicketException.class, () ->
+                superParkingBoy.retrieveCar(parkingTicket1));
+
+        assertEquals(UNRECOGNIZED_PARKING_TICKET, unrecognizedTicketException.getMessage());
+    }
+
+    @Test
+    public void should_return_nothing_when_retrived_car_given_null_parking_lot_and_parking_ticket_superParkingBoy(){
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy(List.of(new ParkingLot(0,1)));
+        Car car1 = new Car("AAAAA");
+
+        NoAvailablePositionException unrecognizedTicketException = assertThrows(NoAvailablePositionException.class, () ->
+                superParkingBoy.parkCar(car1));
+
+        assertEquals(NO_AVAILABLE_POSITION, unrecognizedTicketException.getMessage());
+
+    }
+
 }
