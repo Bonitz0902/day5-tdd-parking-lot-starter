@@ -10,6 +10,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingSlotTest {
+    //TODO: Separate the tests into separate classes to make testing by unit easier
+    //TODO: resolve warnings i.e. unused variables, accessing static members via instance reference(click warnings on the upper right, double click warning to go to warning and click alt+enter for suggestions)
     ParkingLot parkingLot = new ParkingLot(10, 1);
     String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket.";
     String NO_AVAILABLE_POSITION = "No available position.";

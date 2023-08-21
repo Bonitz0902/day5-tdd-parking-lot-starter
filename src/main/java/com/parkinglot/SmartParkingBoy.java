@@ -5,7 +5,7 @@ import com.parkinglot.exepction.UnrecognizedTicketException;
 import java.util.*;
 
 public class SmartParkingBoy {
-
+    //TODO: check warnings
     static List<ParkingLot> parkingLotsList;
 
     public SmartParkingBoy(List<ParkingLot> parkingLotList) {

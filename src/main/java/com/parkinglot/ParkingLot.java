@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
+    //TODO: check warnings
+    //TODO: use overloading to create default maxSlot of 10, which is in the story
     private Map<ParkingTicket, Car> parkingTicketCarMap = new HashMap<>();
     private int nextTicketNumber = 1;
     private int maxSlot;

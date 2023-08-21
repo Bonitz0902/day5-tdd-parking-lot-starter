@@ -17,6 +17,7 @@ public class SuperParkingBoy {
         return parkingLot.parkCar(car);
     }
 
+    //TODO: change the function name parkCarAnd*. Remove parkCar
     private ParkingLot parkCarAndGetParkingLotWithLargestAvailableSlotRate(List<ParkingLot> parkingLotList){
         return parkingLotList.stream()
                 .max(Comparator.comparingDouble(ParkingLot::getAvailableSlotRate))

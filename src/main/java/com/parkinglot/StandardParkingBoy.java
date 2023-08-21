@@ -17,6 +17,7 @@ public class StandardParkingBoy {
         return null;
     }
 
+    //TODO: this throws a NoAvailablePositionException when the maxSlot (not available slot) of the parking lot is 0.
     public ParkingTicket parkCar(Car car) {
 
         for (ParkingLot parkingLot1 : parkingLotList) {
